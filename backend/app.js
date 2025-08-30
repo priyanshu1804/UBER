@@ -7,6 +7,7 @@ app.use(cors());
 const dotenv=require('dotenv');
 dotenv.config();
 const userRouter=require('./routes/user.route');
+const captainRouter=require('./routes/captain.route');
 const e = require('express');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -14,4 +15,5 @@ app.get('/',(req,res)=>{
     res.send('Hello World');
 });
 app.use('/users',userRouter);
+app.use('/captains',captainRouter);
 module.exports=app;

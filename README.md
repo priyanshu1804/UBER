@@ -16,7 +16,9 @@ This is the backend API for the Uber clone project.
 
 ## API Endpoints
 
-### Register User
+### User APIs
+
+#### Register User
 
 - **POST** `/users/register`
 - **Body:**
@@ -38,7 +40,7 @@ This is the backend API for the Uber clone project.
   }
   ```
 
-### Login User
+#### Login User
 
 - **POST** `/users/login`
 - **Body:**
@@ -56,7 +58,7 @@ This is the backend API for the Uber clone project.
   }
   ```
 
-### Get User Profile
+#### Get User Profile
 
 - **GET** `/users/profile`
 - **Headers:**
@@ -69,7 +71,7 @@ This is the backend API for the Uber clone project.
   }
   ```
 
-### Logout User
+#### Logout User
 
 - **GET** `/users/logout`
 - **Headers:**
@@ -79,6 +81,82 @@ This is the backend API for the Uber clone project.
   ```json
   {
     "message": "Logged out successfully"
+  }
+  ```
+
+---
+
+### Captain APIs
+
+#### Register Captain
+
+- **POST** `/captains/register`
+- **Body:**
+  ```json
+  {
+    "fullname": {
+      "firstname": "Jane",
+      "lastname": "Smith"
+    },
+    "email": "jane@example.com",
+    "password": "securepass",
+    "vehicle": {
+      "color": "Red",
+      "plate": "XYZ123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "token": "JWT_TOKEN",
+    "captain": { ... }
+  }
+  ```
+
+#### Login Captain
+
+- **POST** `/captains/login`
+- **Body:**
+  ```json
+  {
+    "email": "jane@example.com",
+    "password": "securepass"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "token": "JWT_TOKEN",
+    "captain": { ... }
+  }
+  ```
+
+#### Get Captain Profile
+
+- **GET** `/captains/profile`
+- **Headers:**
+  - `Authorization: Bearer JWT_TOKEN`
+  - or send cookie `token=JWT_TOKEN`
+- **Response:**
+  ```json
+  {
+    "captain": { ... }
+  }
+  ```
+
+#### Logout Captain
+
+- **GET** `/captains/logout`
+- **Headers:**
+  - `Authorization: Bearer JWT_TOKEN`
+  - or send cookie `token=JWT_TOKEN`
+- **Response:**
+  ```json
+  {
+    "message": "Logout successfully"
   }
   ```
 
